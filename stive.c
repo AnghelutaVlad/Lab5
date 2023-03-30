@@ -33,3 +33,35 @@ void deleteStack(Node**top){
 		free(temp);
 	}
 }
+void paranteze()
+{
+    char expresie[50];
+    gets(expresie);
+    Node *top=NULL;
+    Data x=0;
+    for(int i=0;i<strlen(expresie);i++)
+    {
+        //printf("n");
+        if(expresie[i]=='(')
+            push(&top,i);
+        else if(expresie[i]==')')
+        {
+            if(!isEmpty(top))
+                x=pop(&top);
+            else
+                push(&top,i);
+
+        }
+    }
+    if(isEmpty(top))
+        printf("Parantezele sunt inchise\n");
+    else
+    {
+        printf("pozitiile incorecte sunt:");
+        while(!isEmpty(top))
+            {
+                printf("%d",pop(&top));
+            }
+    }
+
+}
