@@ -6,10 +6,10 @@ struct nod{
              Data val;
              struct nod* next;
           };
-typedef struct nod Node;
+typedef struct nod Nodeq;
 struct date{
-               Node *front;
-               Node *rear;
+               Nodeq *front;
+               Nodeq *rear;
            };
 typedef struct date Queue;
 Queue* createQueue();
@@ -17,3 +17,4 @@ void enQueue(Queue*q, Data v);
 int isempty(Queue*q);
 Data deQueue(Queue*q);
 void deleteQueue(Queue*q);
+void reversal(Queue*q);

@@ -1,17 +1,5 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-typedef int Data;
-struct nod{
-             Data val;
-             struct nod* next;
-          };
-typedef struct nod Node;
-struct date{
-               Node *front;
-               Node *rear;
-           };
-typedef struct date Queue;
+#include"cozi.h"
+#include"stive.h"
 Queue* createQueue(){
 	Queue *q;
 	q=(Queue *)malloc(sizeof(Queue));
@@ -21,7 +9,7 @@ Queue* createQueue(){
 }
 
  void enQueue(Queue*q, Data v){
-	Node* newNode=(Node*)malloc(sizeof(Node));
+	Nodeq* newNode=(Nodeq*)malloc(sizeof(Nodeq));
 	newNode->val=v;
 	newNode->next=NULL;
 	if (q->rear==NULL) q->rear=newNode;
@@ -35,7 +23,7 @@ int isempty(Queue*q){
 	return (q->front==NULL);
 }
 Data deQueue(Queue*q) {
-	Node* aux; Data d;
+	Nodeq* aux; Data d;
 	if (isempty(q)) return INT_MIN;
 
 	aux=q->front;
@@ -45,7 +33,7 @@ Data deQueue(Queue*q) {
 	return d;
 }
 void deleteQueue(Queue*q){
-	Node* aux;
+	Nodeq* aux;
 	while (!isempty(q)){
 		aux=q->front;
 		q->front=q->front->next;
@@ -53,4 +41,19 @@ void deleteQueue(Queue*q){
 	}
 	free(q);
 }
-
+void reversal(Queue*q)
+{
+    Node* top=NULL;
+    Data x;
+    while(!isempty(q))
+    {
+        x=deQueue(q);
+        push(&top,x);
+    }
+    while(!isEmpty(top))
+    {
+        x=pop(&top);
+        enQueue(q,x);
+    }
+    return;
+}
